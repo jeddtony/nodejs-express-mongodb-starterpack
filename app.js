@@ -9,7 +9,6 @@ dotenv.config();
 
 
 const MONGODB_URI = `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@127.0.0.1:27017/${process.env.MONGO_DATABASE}`;
-// const MONGO_URI = `mongodb://starterUser:starterUser@127.0.0.1:27017/starterpack`;
 
 
 
