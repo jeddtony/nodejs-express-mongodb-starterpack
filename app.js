@@ -19,6 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Import Routes 
 const userRoutes = require("./routes/userRoute");
 const authRoute = require("./routes/authRoute");
+const exampleRoute = require("./routes/exampleRoute");
 
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -32,6 +33,7 @@ app.use((req, res, next) => {
 
   app.use("/", userRoutes);
   app.use("/", authRoute);
+  app.use("/", exampleRoute);
 
 // process.exit();
 
