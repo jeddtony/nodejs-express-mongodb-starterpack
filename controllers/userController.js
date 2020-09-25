@@ -1,7 +1,7 @@
 const {successResponse, errorResponse, notFoundResponse} = require('../helpers');
 const bcrypt = require('bcryptjs');
 const UserRepository = require('../repository/userRepository');
-
+const Mail = require('../mails');
 
 exports.getUser = async(req, res, next) => {
     return successResponse(
@@ -11,17 +11,16 @@ exports.getUser = async(req, res, next) => {
 
 exports.postUser = async(req, res, next) => {
     let {name, email, password} = req.body;
-    console.log({name, email, password});
     // process.exit();
     let hashedPassword = await makeHash(password);
    try{
-    const user = await UserRepository.createUser({
-        name,
-        email,
-        password: hashedPassword
-    });
-
-    return successResponse(res, 'User created', user)
+    // const user = await UserRepository.createUser({
+    //     name,
+    //     email,
+    //     password: hashedPassword
+    // });
+    Mail.sendVerifyEmail();
+    return successResponse(res, 'User created', 'user')
    }
    catch(error) {
        console.log('an error occurred');
