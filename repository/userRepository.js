@@ -12,12 +12,14 @@ exports.createUser = async ({...params}) => {
     let user = new User({...params});
     try {
         user = await user.save();
+        return user;
     }
     catch(error) {
         console.log(error);
+        throw error;
     }
 
 
-    return user;
+    // return user;
 
 }

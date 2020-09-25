@@ -13,3 +13,11 @@ exports.successResponse = (res, message, data) => {
       data,
     });
   };
+
+  exports.errorResponse = (res, message, data) => {
+    return res.status(422).json({
+      status: true,
+      message,
+      data,
+    });
+  }

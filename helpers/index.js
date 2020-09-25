@@ -1,3 +1,4 @@
-import {successResponse, notFoundResponse} from './responseHelpers';
+const {successResponse, notFoundResponse, errorResponse} = require('./responseHelpers')
 
-return {successResponse, notFoundResponse}
+module.exports = {successResponse, notFoundResponse, 
+errorResponse};
