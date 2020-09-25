@@ -18,6 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Import Routes 
 const userRoutes = require("./routes/userRoute");
+const authRoute = require("./routes/authRoute");
 
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -30,6 +31,7 @@ app.use((req, res, next) => {
   });
 
   app.use("/", userRoutes);
+  app.use("/", authRoute);
 
 // process.exit();
 
@@ -37,7 +39,7 @@ mongoose
   .connect(MONGODB_URI, { useNewUrlParser: true })
   .then((result) => {
     console.log("Connected to Database!");
-    app.listen(process.env.PORT || 3000);
+    app.listen(process.env.PORT || 4000);
   })
   .catch((err) => {
     console.log(err);

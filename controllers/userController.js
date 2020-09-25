@@ -1,6 +1,4 @@
-// import {successResponse} from '../helpers'
 const {successResponse, errorResponse, notFoundResponse} = require('../helpers');
-const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const UserRepository = require('../repository/userRepository');
 
@@ -30,6 +28,7 @@ exports.postUser = async(req, res, next) => {
        return errorResponse(res, error.message, {name, email, password})
    }
 }
+
 
 const makeHash = async (password) => {
     const salt = await bcrypt.genSalt(10);
