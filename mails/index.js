@@ -1,7 +1,7 @@
 const nodemailer = require("nodemailer");
 let hbs = require("nodemailer-express-handlebars");
 
-const verifyEmail = ({view, ...variables}) => {
+const emailEngine = ({view, ...variables}) => {
   console.log('showing the email view ', view)  ;
   // process.exit();
   let options = {
@@ -33,8 +33,17 @@ let smtpTransport = nodemailer.createTransport({
 }
 
 exports.sendVerifyEmail = () => {
-    verifyEmail({view:"welcome", template: "welcome",
+    emailEngine({view:"welcome", template: "welcome",
   to: "me@mail.com",
 subject: "Welcome ",
   from: "starterpack@mail.com"} )
+}
+
+exports.sendPasswordRest = (token, recipientEmail) => {
+  let tokenLink = `http://localhost:4000/token/${token}`;
+  emailEngine({view: "resetPassword", template: "resetPassword", 
+    to: recipientEmail,
+  subject: "Reset Password",
+from: "starterpack@mail.com",
+context: {tokenLink}})
 }
