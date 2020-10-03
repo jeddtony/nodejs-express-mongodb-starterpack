@@ -19,7 +19,27 @@ exports.createUser = async ({...params}) => {
         throw error;
     }
 
-
     // return user;
+}
 
+exports.storeToken = async(token, email) => {
+    let user = await User.findOne({ email});
+    if(!user) {
+        return false;
+    }
+    user.token = token;
+    user.save();
+
+    return user;
+}
+
+exports.updatePassword = async(password, id) => {
+    let user = await User.findById(id);
+    if(!user) {
+        return false;
+    }
+    user.password = password;
+    user.save();
+
+    return user;
 }
